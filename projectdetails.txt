@@ -1,0 +1,41 @@
+Mini Project: Book Manager with Django.
+
+Project Objective
+
+Build a simple Django web application where users can:
+	1.	Register, Login, and Logout
+	2.	Add, Update, and List books they have added
+
+⸻
+
+Requirements
+	1.	User Authentication
+	•	Users should be able to sign up, log in, and log out.
+	•	Use Django’s built-in User model and authentication system.
+	2.	Book Model
+	•	Create a model named Book with fields:
+	•	title (CharField)
+	•	author (CharField)
+	•	description (TextField)
+	•	added_by (ForeignKey to User)
+	•	created_at (DateTimeField, auto_now_add=True)
+	3.	Book CRUD
+	•	Only logged-in users can add, edit, or view their own books.
+	•	Display a list of books added by the logged-in user.
+	•	Provide forms to create and update book entries.
+	4.	UI
+	•	Use Django templates with Bootstrap for a clean and simple UI.
+
+⸻
+
+Hints
+	•	Use django-admin startproject and startapp to set up.
+	•	Use django.contrib.auth for authentication (login/logout).
+	•	Use Django’s LoginRequiredMixin to restrict views.
+	•	Use ModelForm to create forms for the Book model.
+	•	Create views using Django’s Class-Based Views (optional) or function-based views.
+	•	Create templates for:
+	•	Login page
+	•	Add/Edit book
+	•	Book listing page
+	•	Use messages framework to show success or error notifications.

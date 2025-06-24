@@ -1,0 +1,137 @@
+{% extends 'base.html' %}
+
+{% block start %}
+<style>
+    body {
+        margin: 0;
+        padding: 0;
+        font-family: 'Poppins', sans-serif;
+        background: linear-gradient(135deg, #667eea, #764ba2);
+        min-height: 100vh;
+    }
+
+    .professional-gradient {
+        background: linear-gradient(135deg, #667eea, #764ba2);
+        color: white;
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+        border-radius: 10px;
+        margin-top: 10px;
+        /* raises navbar slightly from top */
+    }
+
+    .navbar-brand {
+        font-weight: bold;
+        font-size: 1.4rem;
+    }
+
+
+
+    .search-bar {
+        margin: 20px auto 10px;
+        text-align: center;
+    }
+
+    .search-bar form {
+        display: inline-flex;
+        gap: 10px;
+    }
+
+    .table {
+        background: rgba(255, 255, 255, 0.2);
+        border-radius: 10px;
+        backdrop-filter: blur(12px);
+        box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+        color: black;
+        border: 2px solid black;
+    }
+
+    .table th,
+    .table td {
+        text-align: center;
+        padding: 15px;
+        color: black;
+        border: 1px solid black;
+    }
+
+    .btn-outline-success {
+        color: #5a3e98;
+        border: 2px solid #5a3e98;
+    }
+
+    .btn-outline-danger {
+        color: #ff4757;
+        border: 2px solid #ff4757;
+    }
+
+    .btn-outline-success:hover,
+    .btn-outline-danger:hover {
+        background: rgba(255, 255, 255, 0.2);
+        backdrop-filter: blur(5px);
+    }
+</style>
+
+<!-- Fixed Navbar -->
+<div class="container-fluid">
+    <nav class="navbar navbar-expand-lg shadow-lg professional-gradient p-3">
+        <div class="container-fluid">
+            <h1 style="position: absolute; top: 20px; left: 20px; color: white;">📚 BookNest</h1>
+
+            <div class="d-flex flex-column align-items-end ms-auto">
+                {% if request.user.is_authenticated %}
+                <span class="text-white fw-semibold mb-2">Welcome, {{ request.user.username }}</span>
+
+                <div class="d-flex flex-wrap align-items-center">
+
+                    <a href="/books" class="btn btn-outline-light me-2 mb-1">➕ Add Book</a>
+                    <a href="/logout" class="btn btn-light mb-1">Logout</a>
+                </div>
+                {% endif %}
+            </div>
+        </div>
+    </nav>
+</div>
+
+<!-- Search Bar (below navbar) -->
+<div class="search-bar">
+    <form method="GET">
+        <input class="form-control" type="search" name="q" placeholder="Search by Title, Author or Username"
+            value="{{ request.GET.q }}" style="width: 300px;" />
+        <button class="btn btn-light" type="submit">🔍 Search</button>
+    </form>
+</div>
+
+<!-- Book List Table -->
+<div class="container-fluid my-3 p-3">
+    <table class="table table-bordered table-striped">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>Title</th>
+                <th>Author</th>
+                <th>Description</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% if books %}
+            {% for book in books %}
+            <tr>
+                <th>{{ forloop.counter }}</th>
+                <td>{{ book.title }}</td>
+                <td>{{ book.author }}</td>
+                <td>{{ book.description }}</td>
+                <td>
+                    <a href="/update-books/{{ book.id }}" class="btn btn-outline-success mb-3">✏ Update</a>
+                    <a href="/delete-book/{{ book.id }}" class="btn btn-outline-danger mb-3">🗑 Delete</a>
+                </td>
+            </tr>
+            {% endfor %}
+            {% else %}
+            <tr>
+                <td colspan="5" class="text-center text-muted">No books added yet.</td>
+            </tr>
+            {% endif %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

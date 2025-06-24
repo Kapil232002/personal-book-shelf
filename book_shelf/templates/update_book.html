@@ -1,0 +1,164 @@
+{% extends 'base.html' %}
+
+{% block start %}
+<style>
+    /* Apply the themed background */
+    body {
+        margin: 0;
+        padding: 0;
+        font-family: 'Poppins', sans-serif;
+        background: linear-gradient(135deg, #667eea, #764ba2);
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+
+    /* Navbar Styling with Sharp Shadow */
+    .professional-gradient {
+        background: linear-gradient(135deg, #667eea, #764ba2);
+        color: white;
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+        /* Sharp shadow */
+        border-radius: 10px;
+    }
+
+    .navbar-brand {
+        font-weight: bold;
+        font-size: 1.4rem;
+    }
+
+    /* Form Card */
+    .card {
+        background: rgba(255, 255, 255, 0.2);
+        border-radius: 15px;
+        padding: 20px;
+        backdrop-filter: blur(12px);
+        box-shadow: 0 10px 40px rgba(0, 0, 0, 0.4);
+        width: 90%;
+        max-width: 600px;
+        color: white;
+    }
+
+    /* Header: Add Your Book */
+    h2 {
+        text-align: center;
+        padding: 15px;
+        border-radius: 10px;
+        color: white;
+    }
+
+    /* Form Labels - High Contrast Gold */
+    label {
+        font-weight: bold;
+        color: #FFD700;
+        /* Rich Gold */
+    }
+
+    .form-control {
+        background: transparent;
+        border: 2px solid #ffffff90;
+        color: white;
+        font-size: 16px;
+        padding: 10px;
+    }
+
+    .form-control::placeholder {
+        color: #eeeeee;
+    }
+
+    /* Submit Button */
+    .btn-success {
+        background-color: #FFD700;
+        /* Gold */
+        color: #764ba2;
+        font-weight: bold;
+        border: none;
+        transition: 0.3s;
+        padding: 10px 15px;
+    }
+
+    .btn-success:hover {
+        background-color: #764ba2;
+        color: white;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    }
+</style>
+
+<!-- Navbar inside container-fluid -->
+<div class="container-fluid">
+    <nav class="navbar navbar-expand-lg shadow-lg professional-gradient p-3">
+        <div class="container-fluid">
+            <h1 style="position: absolute; top: 20px; left: 20px; color: white;">📚 BookNest</h1>
+
+            <div class="d-flex flex-column align-items-end ms-auto">
+                {% if request.user.is_authenticated %}
+                <span class="text-white fw-semibold mb-2">Welcome, {{ request.user.username }}</span>
+
+                <div class="d-flex flex-wrap align-items-center">
+                    {% if request.path == '/book-list/' %}
+                    <form method="GET" class="d-flex me-2">
+                        <input class="form-control me-2" type="search" name="q"
+                            placeholder="Search by Title, Author or Username" value="{{ request.GET.q }}"
+                            style="width:200px;" />
+                        <button class="btn btn-light" type="submit">🔍 Search</button>
+                    </form>
+                    {% endif %}
+
+                    <a href="/book-list/" class="btn btn-outline-light me-2 mb-1">📖 Book List</a>
+                    <a href="/logout" class="btn btn-light mb-1">Logout</a>
+                </div>
+                {% else %}
+                <div class="d-flex">
+                    {% if request.path == '/' %}
+                    <a href="/register" class="btn btn-light">Register</a>
+                    {% else %}
+                    <a href="/" class="btn btn-light">Login</a>
+                    {% endif %}
+                </div>
+                {% endif %}
+            </div>
+        </div>
+    </nav>
+</div>
+
+<!-- Book Submission Form -->
+<div class="container my-4">
+    <form class="col-6 mx-auto card p-4 shadow-lg" method="post">
+        {% csrf_token %}
+        <div class="col-4.5 mx-auto ">
+            <h2>📜 <b>Update Book Details</b> 📜</h2>
+        </div>
+        <hr>
+        <!-- {% if messages %}
+        <div class="alert alert-danger">
+            {% for message in messages %}
+            {{ message }}
+            {% endfor %}
+        </div>
+        {% endif %} -->
+        <div class="form-group mb-3">
+            <label>Title</label>
+            <input name="title" value="{{books.title}}" type="text" class="form-control" placeholder="Book Title"
+                required>
+        </div>
+        <div class="form-group mb-3">
+            <label>Author</label>
+            <input name="author_name" value="{{books.author}}" type="text" class="form-control"
+                placeholder="Book Author" required>
+        </div>
+        <div class="form-group mb-3">
+            <label>Description</label>
+            <textarea type="text" class="form-control" name="description"
+                placeholder="Book Description">{{books.description}}</textarea>
+        </div>
+        <div class="form-group mb-4">
+            <label>Added By</label>
+            <input name="added_by" value="{{books.added_by}}" type="text" class="form-control" placeholder="Username"
+                required>
+        </div>
+        <button type="submit" class="btn btn-success">Update</button>
+    </form>
+</div>
+{% endblock %}
