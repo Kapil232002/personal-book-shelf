@@ -3,71 +3,106 @@
 {% block start %}
 <style>
     body {
-        margin: 0;
-        padding: 0;
-        font-family: 'Poppins', sans-serif;
-        background: linear-gradient(135deg, #667eea, #764ba2);
-        min-height: 100vh;
+    margin: 0;
+    padding: 0;
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(135deg, #1f1c2c, #928dab);
+    min-height: 100vh;
     }
 
+
     .professional-gradient {
-        background: linear-gradient(135deg, #667eea, #764ba2);
-        color: white;
-        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
-        border-radius: 10px;
-        margin-top: 10px;
-        /* raises navbar slightly from top */
+    background: linear-gradient(135deg, #1f1c2c, #928dab);
+    color: white;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.6);
+    border-radius: 12px;
+    padding: 16px 24px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(8px);
     }
 
     .navbar-brand {
-        font-weight: bold;
-        font-size: 1.4rem;
-    }
+    font-weight: bold;
+    font-size: 1.6rem;
+    color: #f1f1f1;
+}
+
+.search-bar {
+    margin: 30px auto 20px;
+    text-align: center;
+}
+
+.search-bar form {
+    display: inline-flex;
+    gap: 12px;
+}
+
+.search-bar input {
+    border-radius: 8px;
+    background-color: rgba(255, 255, 255, 0.1);
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    color: white;
+    padding: 10px 15px;
+    width: 300px;
+}
+
+.search-bar input::placeholder {
+    color: rgba(255, 255, 255, 0.5);
+}
+
+.table.table-bordered.table-striped {
+    background: rgba(0, 0, 0, 0.6) !important;
+    color: #ffffff !important;
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(10px);
+}
+
+.table.table-bordered.table-striped th,
+.table.table-bordered.table-striped td {
+    color: #ffffff !important;
+    border: 1px solid rgba(255, 255, 255, 0.2) !important;
+    text-align: center;
+    padding: 15px;
+    background: transparent !important;
+}
+
+/* Zebra striping fix */
+.table.table-bordered.table-striped tbody tr:nth-child(even) {
+    background-color: rgba(255, 255, 255, 0.06) !important;
+}
+
+.table.table-bordered.table-striped tbody tr:hover {
+    background-color: rgba(255, 255, 255, 0.1) !important;
+    transition: background 0.3s ease;
+}
 
 
 
-    .search-bar {
-        margin: 20px auto 10px;
-        text-align: center;
-    }
+/* Buttons */
+.btn-outline-success {
+    color: #a779e9;
+    border: 2px solid #a779e9;
+    font-weight: bold;
+    transition: all 0.3s ease;
+}
 
-    .search-bar form {
-        display: inline-flex;
-        gap: 10px;
-    }
+.btn-outline-danger {
+    color: #ff6b6b;
+    border: 2px solid #ff6b6b;
+    font-weight: bold;
+    transition: all 0.3s ease;
+}
 
-    .table {
-        background: rgba(255, 255, 255, 0.2);
-        border-radius: 10px;
-        backdrop-filter: blur(12px);
-        box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
-        color: black;
-        border: 2px solid black;
-    }
+.btn-outline-success:hover,
+.btn-outline-danger:hover {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(5px);
+    transform: scale(1.05);
+    color: white;
+}
 
-    .table th,
-    .table td {
-        text-align: center;
-        padding: 15px;
-        color: black;
-        border: 1px solid black;
-    }
-
-    .btn-outline-success {
-        color: #5a3e98;
-        border: 2px solid #5a3e98;
-    }
-
-    .btn-outline-danger {
-        color: #ff4757;
-        border: 2px solid #ff4757;
-    }
-
-    .btn-outline-success:hover,
-    .btn-outline-danger:hover {
-        background: rgba(255, 255, 255, 0.2);
-        backdrop-filter: blur(5px);
-    }
 </style>
 
 <!-- Fixed Navbar -->
