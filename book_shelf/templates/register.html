@@ -2,11 +2,11 @@
 
 {% block start %}
 <style>
-    body {
+     body {
         margin: 0;
         padding: 0;
         font-family: 'Poppins', sans-serif;
-        background: linear-gradient(135deg, #667eea, #764ba2);
+        background: linear-gradient(135deg, #1f1c2c, #928dab);
         min-height: 100vh;
         display: flex;
         align-items: center;
@@ -65,18 +65,26 @@
     }
 
     .btn-login {
-        width: 100%;
-        background-color: #ffffff20;
-        color: white;
-        border: 1px solid white;
-        font-weight: bold;
-        transition: 0.3s;
-    }
+    all: unset; /* Ye sab kuch reset karega */
+    display: block;
+    width: 100%;
+    padding: 11px 7px;
+    font-weight: bold;
+    text-align: center;
+    border-radius: 8px;
+    background: linear-gradient(to right, #928dab, #1f1c2c);
+    color: white;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    transition: all 0.5s ease-in-out;
+    cursor: pointer;
+}
 
-    .btn-login:hover {
-        background-color: white;
-        color: #764ba2;
-    }
+.btn-login:hover {
+    transform: scale(1.05);
+    background: linear-gradient(to right, #1f1c2c , #928dab);
+    box-shadow: 0 0 30px rgba(255, 255, 255, 0.2);
+}
+
 
     .register-link {
         text-align: center;
@@ -113,7 +121,7 @@
 <div class="container-box mt-5">
     <!-- Cartoon Image Side -->
     <div class="left-img">
-        <img src="/static/Copilot_20250614_002537.png" alt="Cartoon pointing to login">
+        <img src="/static/ChatGPT Image Jun 23, 2025, 05_16_57 PM.png" alt="Cartoon pointing to login">
     </div>
 
     <!-- Login Form Side -->
@@ -134,7 +142,8 @@
             <input type="text" name="last_name" class="form-control" placeholder="Last Name" required>
             <input type="text" name="username" class="form-control" placeholder="Username" required>
             <input type="password" name="password" class="form-control" placeholder="Password" required>
-            <button type="submit" class="btn btn-login">Register</button>
+            <button type="submit" class="btn-login">Register</button>
+
         </form>
 
         <div class="register-link">

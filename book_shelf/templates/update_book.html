@@ -7,7 +7,8 @@
         margin: 0;
         padding: 0;
         font-family: 'Poppins', sans-serif;
-        background: linear-gradient(135deg, #667eea, #764ba2);
+        background: linear-gradient(135deg, #1f1c2c, #928dab);
+
         min-height: 100vh;
         display: flex;
         flex-direction: column;
@@ -17,11 +18,13 @@
 
     /* Navbar Styling with Sharp Shadow */
     .professional-gradient {
-        background: linear-gradient(135deg, #667eea, #764ba2);
-        color: white;
-        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
-        /* Sharp shadow */
-        border-radius: 10px;
+    background: linear-gradient(135deg, #1f1c2c, #928dab);
+    color: white;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.6);
+    border-radius: 12px;
+    padding: 16px 24px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(8px);
     }
 
     .navbar-brand {
@@ -38,52 +41,64 @@
         box-shadow: 0 10px 40px rgba(0, 0, 0, 0.4);
         width: 90%;
         max-width: 600px;
-        color: white;
+        color: whitesmoke;
     }
 
     /* Header: Add Your Book */
     h2 {
-        text-align: center;
-        padding: 15px;
-        border-radius: 10px;
-        color: white;
-    }
+    text-align: center;
+    padding: 15px;
+    border-radius: 10px;
+    color: #f8f9fa; /* Light text for dark bg */
+    font-size: 28px;
+    font-weight: 600;
+}
 
-    /* Form Labels - High Contrast Gold */
-    label {
-        font-weight: bold;
-        color: #FFD700;
-        /* Rich Gold */
-    }
+/* Labels - Soft Gold */
+label {
+    font-weight: 600;
+    color: #e0b973; /* Warm elegant gold */
+}
 
-    .form-control {
-        background: transparent;
-        border: 2px solid #ffffff90;
-        color: white;
-        font-size: 16px;
-        padding: 10px;
-    }
+/* Input fields */
+.form-control {
+    background-color: rgba(255, 255, 255, 0.05);
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    color: #ffffff;
+    font-size: 16px;
+    padding: 10px;
+    border-radius: 8px;
+    transition: border 0.3s;
+}
 
-    .form-control::placeholder {
-        color: #eeeeee;
-    }
+.form-control:focus {
+    border-color: #928dab;
+    outline: none;
+    background-color: rgba(255, 255, 255, 0.1);
+}
 
-    /* Submit Button */
-    .btn-success {
-        background-color: #FFD700;
-        /* Gold */
-        color: #764ba2;
-        font-weight: bold;
-        border: none;
-        transition: 0.3s;
-        padding: 10px 15px;
-    }
+/* Placeholder text */
+.form-control::placeholder {
+    color: rgba(255, 255, 255, 0.5);
+}
 
-    .btn-success:hover {
-        background-color: #764ba2;
-        color: white;
-        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-    }
+/* Submit button */
+.btn-success {
+    background: linear-gradient(to right, #928dab, #1f1c2c);
+    color: white;
+    font-weight: 600;
+    border: none;
+    padding: 10px 18px;
+    border-radius: 8px;
+    transition: background 0.3s ease, transform 0.2s ease;
+}
+
+.btn-success:hover {
+    background: linear-gradient(to right, #1f1c2c, #928dab);
+    transform: scale(1.03);
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.4);
+}
+
 </style>
 
 <!-- Navbar inside container-fluid -->
