@@ -24,7 +24,13 @@ urlpatterns = [
     path('books/', books, name='books'),
     path('register/', register, name='register'),
     path('book-list/', book_list, name='book_list'),
+
+
     path('delete-book/<int:id>/', delete_book, name='delete_book'),
+    path('delete-book-confirm/<int:id>/', confirm_delete_book, name='confirm_delete_book'),
+    path('delete-book/<int:id>/confirm/', delete_book_confirmed, name='delete_book_confirmed'),
+
+
     path('update-books/<int:id>/', update_books, name='update_books'),
     path('logout/', logout_page, name='logout_page'),
     path('admin/', admin.site.urls),

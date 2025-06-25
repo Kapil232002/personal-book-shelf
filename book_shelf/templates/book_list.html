@@ -3,7 +3,7 @@
 {% block start %}
 <style>
     body {
-    margin: 0;
+    margin: 0 ;
     padding: 0;
     font-family: 'Poppins', sans-serif;
     background: linear-gradient(135deg, #1f1c2c, #928dab);
@@ -157,7 +157,12 @@
                 <td>{{ book.description }}</td>
                 <td>
                     <a href="/update-books/{{ book.id }}" class="btn btn-outline-success mb-3">✏ Update</a>
-                    <a href="/delete-book/{{ book.id }}" class="btn btn-outline-danger mb-3">🗑 Delete</a>
+
+                    <!-- Modal Trigger -->
+                    <a href="{% url 'confirm_delete_book' book.id %}" class="btn btn-outline-danger mb-3">🗑 Delete</a>
+
+
+
                 </td>
             </tr>
             {% endfor %}
