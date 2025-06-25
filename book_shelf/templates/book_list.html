@@ -218,7 +218,6 @@
 
                 <td>
                     <a href="/update-books/{{ book.id }}" class="btn btn-outline-success mb-3">✏ Update</a>
-                    <a href="/delete-book/{{ book.id }}" class="btn btn-outline-danger mb-3">🗑 Delete</a>
                     {% if book.reference_link %}
                     <a href="{{ book.reference_link }}" target="_blank"
                         onclick="return handleViewBook(this, '{{ book.reference_link }}');"
