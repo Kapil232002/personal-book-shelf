@@ -1,0 +1,70 @@
+{% extends 'base.html' %}
+{% block start %}
+<style>
+    .confirm-box {
+        background: rgba(255, 255, 255, 0.05);
+        backdrop-filter: blur(12px);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+        border-radius: 20px;
+        padding: 40px;
+        color: white;
+        text-align: center;
+        max-width: 600px;
+        margin: auto;
+        animation: fadeIn 0.5s ease-in-out;
+    }
+
+    .danger-icon {
+        font-size: 64px;
+        color: #ff4c4c;
+        animation: pulse 1s infinite alternate;
+    }
+
+    .btn-danger, .btn-secondary {
+        padding: 10px 30px;
+        font-weight: 600;
+        border-radius: 8px;
+    }
+
+    .btn-danger:hover {
+        background: #c0392b;
+        transform: scale(1.05);
+    }
+
+    .btn-secondary:hover {
+        transform: scale(1.05);
+    }
+
+    @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(30px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes pulse {
+        from { transform: scale(1); }
+        to { transform: scale(1.1); }
+    }
+
+    body {
+        background: linear-gradient(135deg, #1f1c2c, #928dab);
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+</style>
+
+<div class="confirm-box">
+    <div class="danger-icon">⚠️</div>
+    <h2 class="fw-bold mt-3 mb-2">Confirm Book Deletion</h2>
+    <p class="text-light fs-5">Are you sure you want to delete <strong class="text-warning">"{{ book.title }}"</strong>?</p>
+    <p class="text-muted">This action <strong>cannot</strong> be undone.</p>
+
+    <div class="d-flex justify-content-center gap-3 mt-4">
+        <a href="/delete-book/{{ book.id }}/confirm" class="btn btn-danger">Yes, Delete</a>
+        <a href="{% url 'book_list' %}" class="btn btn-secondary text-white">Cancel</a>
+    </div>
+</div>
+{% endblock %}
+
