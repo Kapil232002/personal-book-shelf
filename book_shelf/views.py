@@ -16,18 +16,21 @@ def books(request):
         title = data.get('title')
         author_name = data.get('author_name')
         description = data.get('description')
+        reference_link = data.get('reference_link')
 
         Book.objects.create(
             title=title,
             author=author_name,
             description=description,
-            added_by=request.user  # Save real logged-in user here
+            added_by=request.user,  # ✅ Comma added here
+            reference_link=reference_link
         )
-        messages.info(request,'Book registered successfully')
+        messages.info(request, 'Book registered successfully')
         return redirect('books')
-    context ={'page':'Add Books'}
 
-    return render(request, 'book.html',context)
+    context = {'page': 'Add Books'}
+    return render(request, 'book.html', context)
+
 
 
 
@@ -126,6 +129,8 @@ def update_books(request, id):
         title = data.get('title')
         author_name = data.get('author_name')
         description = data.get('description')
+        reference_link = data.get('reference_link')
+
         username = data.get('added_by')
 
         user, _ = User.objects.get_or_create(username=username)
@@ -133,6 +138,8 @@ def update_books(request, id):
         book.title = title
         book.author = author_name
         book.description = description
+        book.reference_link = reference_link
+
         book.added_by = user
         book.save()
 
@@ -164,3 +171,5 @@ def reset_password_by_username(request):
             messages.error(request, 'Old password is incorrect or username not found.')
 
     return render(request, 'reset_password.html')
+
+
