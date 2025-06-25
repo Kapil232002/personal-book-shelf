@@ -103,9 +103,6 @@ def book_list(request):
             Q(description__icontains=query)
         )
 
-    # ✅ Show "No books added yet" in template if empty
-    # if not books.exists():
-    #     messages.info(request, "No books added yet.")
 
     return render(request, 'book_list.html', {'books': books, 'page': 'Book_list'})
 
@@ -119,6 +116,20 @@ def delete_book(request, id):
     queryset = Book.objects.get(id =id)
     queryset.delete()
     return redirect('book_list')
+
+@login_required(login_url='/')
+def confirm_delete_book(request, id):
+    book = Book.objects.get(id=id)
+    return render(request, 'confirm.html', {'book': book})
+
+@login_required(login_url='/')
+def delete_book_confirmed(request, id):
+    book = Book.objects.get(id=id)
+    book.delete()
+    return redirect('book_list')
+
+
+
 
 @login_required(login_url='/')
 def update_books(request, id):
