@@ -218,7 +218,6 @@
 
                 <td>
                     <a href="/update-books/{{ book.id }}" class="btn btn-outline-success mb-3">✏ Update</a>
-<<<<<<< HEAD
                     <a href="/delete-book/{{ book.id }}" class="btn btn-outline-danger mb-3">🗑 Delete</a>
                     {% if book.reference_link %}
                     <a href="{{ book.reference_link }}" target="_blank"
@@ -228,11 +227,9 @@
                     <a href="#" onclick="return handleViewBook(this, '');" class="btn btn-outline-view mb-3">👁️ View
                         Book</a>
                     {% endif %}
-=======
 
                     <!-- Modal Trigger -->
                     <a href="{% url 'confirm_delete_book' book.id %}" class="btn btn-outline-danger mb-3">🗑 Delete</a>
->>>>>>> dev-branch2
 
 
 
