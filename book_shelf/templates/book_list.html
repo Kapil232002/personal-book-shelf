@@ -3,120 +3,166 @@
 {% block start %}
 <style>
     body {
-    margin: 0;
-    padding: 0;
-    font-family: 'Poppins', sans-serif;
-    background: linear-gradient(135deg, #1f1c2c, #928dab);
-    min-height: 100vh;
+        margin: 0;
+        padding: 0;
+        font-family: 'Poppins', sans-serif;
+        background: linear-gradient(135deg, #1f1c2c, #928dab);
+        min-height: 100vh;
     }
 
-
     .professional-gradient {
-    background: linear-gradient(135deg, #1f1c2c, #928dab);
-    color: white;
-    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.6);
-    border-radius: 12px;
-    padding: 16px 24px;
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    backdrop-filter: blur(8px);
+        background: linear-gradient(135deg, #1f1c2c, #928dab);
+        color: white;
+        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.6);
+        border-radius: 12px;
+        padding: 16px 24px;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        backdrop-filter: blur(8px);
     }
 
     .navbar-brand {
-    font-weight: bold;
-    font-size: 1.6rem;
-    color: #f1f1f1;
-}
+        font-weight: bold;
+        font-size: 1.6rem;
+        color: #f1f1f1;
+    }
 
-.search-bar {
-    margin: 30px auto 20px;
-    text-align: center;
-}
+    .search-bar {
+        margin: 30px auto 20px;
+        text-align: center;
+    }
 
-.search-bar form {
-    display: inline-flex;
-    gap: 12px;
-}
+    .search-bar form {
+        display: inline-flex;
+        gap: 12px;
+    }
 
-.search-bar input {
-    border-radius: 8px;
-    background-color: rgba(255, 255, 255, 0.1);
-    border: 2px solid rgba(255, 255, 255, 0.3);
-    color: white;
-    padding: 10px 15px;
-    width: 300px;
-}
+    .search-bar input {
+        border-radius: 8px;
+        background-color: rgba(255, 255, 255, 0.1);
+        border: 2px solid rgba(255, 255, 255, 0.3);
+        color: white;
+        padding: 10px 15px;
+        width: 300px;
+    }
 
-.search-bar input::placeholder {
-    color: rgba(255, 255, 255, 0.5);
-}
+    .search-bar input::placeholder {
+        color: rgba(255, 255, 255, 0.5);
+    }
 
-.table.table-bordered.table-striped {
-    background: rgba(0, 0, 0, 0.6) !important;
-    color: #ffffff !important;
-    border-radius: 12px;
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.5);
-    backdrop-filter: blur(10px);
-}
+    .table.table-bordered.table-striped {
+        background: rgba(0, 0, 0, 0.6) !important;
+        color: #ffffff !important;
+        border-radius: 12px;
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        box-shadow: 0 6px 18px rgba(0, 0, 0, 0.5);
+        backdrop-filter: blur(10px);
+    }
 
-.table.table-bordered.table-striped th,
-.table.table-bordered.table-striped td {
-    color: #ffffff !important;
-    border: 1px solid rgba(255, 255, 255, 0.2) !important;
-    text-align: center;
-    padding: 15px;
-    background: transparent !important;
-}
+    .table.table-bordered.table-striped th,
+    .table.table-bordered.table-striped td {
+        color: #ffffff !important;
+        border: 1px solid rgba(255, 255, 255, 0.2) !important;
+        text-align: center;
+        padding: 15px;
+        background: transparent !important;
+    }
 
-/* Zebra striping fix */
-.table.table-bordered.table-striped tbody tr:nth-child(even) {
-    background-color: rgba(255, 255, 255, 0.06) !important;
-}
+    .table.table-bordered.table-striped tbody tr:nth-child(even) {
+        background-color: rgba(255, 255, 255, 0.06) !important;
+    }
 
-.table.table-bordered.table-striped tbody tr:hover {
-    background-color: rgba(255, 255, 255, 0.1) !important;
-    transition: background 0.3s ease;
-}
+    .table.table-bordered.table-striped tbody tr:hover {
+        background-color: rgba(255, 255, 255, 0.1) !important;
+        transition: background 0.3s ease;
+    }
 
+    .table td:nth-child(2),
+    .table th:nth-child(2) {
+        max-width: 200px;
+        word-wrap: break-word;
+    }
 
+    .table td:nth-child(3),
+    .table th:nth-child(3) {
+        max-width: 150px;
+        word-wrap: break-word;
+    }
 
-/* Buttons */
-.btn-outline-success {
-    color: #a779e9;
-    border: 2px solid #a779e9;
-    font-weight: bold;
-    transition: all 0.3s ease;
-}
+    .table td:nth-child(4),
+    .table th:nth-child(4) {
+        max-width: 400px;
+        padding-right: 6px;
+    }
 
-.btn-outline-danger {
-    color: #ff6b6b;
-    border: 2px solid #ff6b6b;
-    font-weight: bold;
-    transition: all 0.3s ease;
-}
+    .table td:nth-child(5),
+    .table th:nth-child(5) {
+        max-width: 290px;
+        padding-right: 6px;
+    }
 
-.btn-outline-success:hover,
-.btn-outline-danger:hover {
-    background: rgba(255, 255, 255, 0.1);
-    backdrop-filter: blur(5px);
-    transform: scale(1.05);
-    color: white;
-}
+    .description-cell {
+        -webkit-line-clamp: 3;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        line-height: 1.4em;
+        max-height: calc(1.4em * 3);
+        position: relative;
+    }
 
+    .read-more-link {
+        display: block;
+        color: #00c9a7;
+        font-size: 0.85rem;
+        margin-top: 4px;
+        text-decoration: underline;
+    }
+
+    .btn-outline-success {
+        color: #a779e9;
+        border: 2px solid #a779e9;
+        font-weight: bold;
+        transition: all 0.3s ease;
+    }
+
+    .btn-outline-danger {
+        color: #ff6b6b;
+        border: 2px solid #ff6b6b;
+        font-weight: bold;
+        transition: all 0.3s ease;
+    }
+
+    .btn-outline-success:hover,
+    .btn-outline-danger:hover {
+        background: rgba(255, 255, 255, 0.1);
+        backdrop-filter: blur(5px);
+        transform: scale(1.05);
+        color: white;
+    }
+
+    .btn-outline-view {
+        color: #00c9a7;
+        border: 2px solid #00c9a7;
+        font-weight: bold;
+        transition: all 0.3s ease;
+    }
+
+    .btn-outline-view:hover {
+        background: rgba(0, 201, 167, 0.15);
+        backdrop-filter: blur(5px);
+        transform: scale(1.05);
+        color: white;
+    }
 </style>
 
-<!-- Fixed Navbar -->
+<!-- Navbar -->
 <div class="container-fluid">
     <nav class="navbar navbar-expand-lg shadow-lg professional-gradient p-3">
         <div class="container-fluid">
             <h1 style="position: absolute; top: 20px; left: 20px; color: white;">📚 BookNest</h1>
-
             <div class="d-flex flex-column align-items-end ms-auto">
                 {% if request.user.is_authenticated %}
                 <span class="text-white fw-semibold mb-2">Welcome, {{ request.user.username }}</span>
-
                 <div class="d-flex flex-wrap align-items-center">
-
                     <a href="/books" class="btn btn-outline-light me-2 mb-1">➕ Add Book</a>
                     <a href="/logout" class="btn btn-light mb-1">Logout</a>
                 </div>
@@ -126,7 +172,7 @@
     </nav>
 </div>
 
-<!-- Search Bar (below navbar) -->
+<!-- Search -->
 <div class="search-bar">
     <form method="GET">
         <input class="form-control" type="search" name="q" placeholder="Search by Title, Author or Username"
@@ -135,7 +181,7 @@
     </form>
 </div>
 
-<!-- Book List Table -->
+<!-- Table -->
 <div class="container-fluid my-3 p-3">
     <table class="table table-bordered table-striped">
         <thead>
@@ -154,10 +200,36 @@
                 <th>{{ forloop.counter }}</th>
                 <td>{{ book.title }}</td>
                 <td>{{ book.author }}</td>
-                <td>{{ book.description }}</td>
+                <td class="description-cell">
+                    <span id="short-desc-{{ book.id }}">
+                        {{ book.description|truncatechars:180 }}
+                        {% if book.description|length > 180 %}
+                        <a href="javascript:void(0);" onclick="toggleDescription({{ book.id }})"
+                            class="read-more-link">Read more</a>
+                        {% endif %}
+                    </span>
+
+                    <span id="full-desc-{{ book.id }}" style="display: none;">
+                        {{ book.description }}
+                        <a href="javascript:void(0);" onclick="toggleDescription({{ book.id }})"
+                            class="read-more-link">Read less</a>
+                    </span>
+                </td>
+
                 <td>
                     <a href="/update-books/{{ book.id }}" class="btn btn-outline-success mb-3">✏ Update</a>
                     <a href="/delete-book/{{ book.id }}" class="btn btn-outline-danger mb-3">🗑 Delete</a>
+                    {% if book.reference_link %}
+                    <a href="{{ book.reference_link }}" target="_blank"
+                        onclick="return handleViewBook(this, '{{ book.reference_link }}');"
+                        class="btn btn-outline-view mb-3">👁️ View Book</a>
+                    {% else %}
+                    <a href="#" onclick="return handleViewBook(this, '');" class="btn btn-outline-view mb-3">👁️ View
+                        Book</a>
+                    {% endif %}
+
+
+
                 </td>
             </tr>
             {% endfor %}
@@ -169,4 +241,29 @@
         </tbody>
     </table>
 </div>
+
+<script>
+    function handleViewBook(link, url) {
+        if (!url || url.trim() === '') {
+            alert('No reference URL provided for this book.');
+            return false;
+        }
+        window.open(url, '_blank');
+        return false;
+    }
+
+
+      function toggleDescription(id) {
+    const shortDesc = document.getElementById(`short-desc-${id}`);
+    const fullDesc = document.getElementById(`full-desc-${id}`);
+    if (shortDesc.style.display === 'none') {
+      shortDesc.style.display = 'inline';
+      fullDesc.style.display = 'none';
+    } else {
+      shortDesc.style.display = 'none';
+      fullDesc.style.display = 'inline';
+    }
+  }
+</script>
+
 {% endblock %}

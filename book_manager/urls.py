@@ -29,4 +29,6 @@ urlpatterns = [
     path('logout/', logout_page, name='logout_page'),
     path('admin/', admin.site.urls),
     path('reset-password/', reset_password_by_username, name='reset_password_by_username'),
+
+
 ]
