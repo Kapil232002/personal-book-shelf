@@ -12,11 +12,7 @@ services:
       DJANGO_SUPERUSER_EMAIL=none@localhost \
       python manage.py createsuperuser --noinput || true
 
-      # Create superuser: dev
-      DJANGO_SUPERUSER_USERNAME=dev \
-      DJANGO_SUPERUSER_PASSWORD=2000 \
-      DJANGO_SUPERUSER_EMAIL=none@localhost \
-      python manage.py createsuperuser --noinput || true
+
 
       gunicorn book_manager.wsgi:application
 
