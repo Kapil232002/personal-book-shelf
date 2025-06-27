@@ -1,8 +1,3 @@
-Here is the **entire content converted to proper GitHub-flavored Markdown**. You can copy-paste this into your `README.md` file or use the downloadable version at the end.
-
----
-
-````markdown
 # 🌐 Django App Deployment Flow on Render.com
 
 This guide explains the **complete internal flow** of a Django app deployed on **Render**, including all the components involved from **user request to response** — clearly and in detail.
@@ -30,7 +25,6 @@ This guide explains the **complete internal flow** of a Django app deployed on *
 
 ```python
 return render(request, 'library.html', {'books': books})
-````
 
 ### 🔁 Flow Breakdown:
 
