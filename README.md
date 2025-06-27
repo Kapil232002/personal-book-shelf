@@ -183,27 +183,3 @@ STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 ```
 
----
-
-## 💬 Questions?
-
-Open an issue or connect with me if you want:
-
-* A visual diagram
-* `render.yaml` sample file
-* Help with static/media file deployment
-
----
-
-```
-
----
-
-### ✅ Download the Ready-to-Use File
-
-Here’s your file you can upload directly to GitHub:
-
-📥 [Download `README.md`](sandbox:/mnt/data/README.md)
-
-Let me know if you'd like images or diagrams added!
-```
