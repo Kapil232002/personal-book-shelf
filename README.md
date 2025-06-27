@@ -2,7 +2,7 @@
 
 This guide explains the **complete internal flow** of a Django app deployed on **Render**, including all the components involved from **user request to response** — clearly and in detail.
 
----
+
 
 ## 🧱 Simplified Layered View (Based on the OSI Model)
 
@@ -15,7 +15,7 @@ This guide explains the **complete internal flow** of a Django app deployed on *
 
 > 🔗 User clicks a link → 🌐 Network delivers request → 🖥️ Server runs backend → 📄 Response sent → 🌐 Network returns it → 🧑‍💻 User sees page
 
----
+
 
 ## 🎯 How `render()` Works in Django
 
@@ -23,26 +23,23 @@ This guide explains the **complete internal flow** of a Django app deployed on *
 1. Sends **data** to a template via a context dictionary  
 2. Builds a full **HTML response** and sends it back to the browser
 
-```python
-```
+
 return render(request, 'library.html', {'books': books})
-```
-```
+
+
 ### 🔁 Flow Breakdown:
 
-1. 🔗 User visits `/library/`
+1. 🔗 User visits /library/
 2. 📩 HTTP GET request hits Django view
-3. 🧠 View processes the request and calls `render()`
+3. 🧠 View processes the request and calls render()
 4. 📄 Django fills the template with context data
 5. 🚚 Completed HTML is returned as an HTTP response
 6. 🖥️ Browser renders the page
 
----
+
 
 ## 🔷 Django Hosting Flow on Render
 
-```
-```
 User’s Browser
      ↓
 Render's NGINX (auto-managed)
@@ -54,24 +51,15 @@ WSGI (Python interface)
 Django Application
      ↓
 Response goes back the same path
-```
-
----
-```
 
 ## 🔶 1. User's Browser Sends a Request
 
-* User opens: `https://yourproject.onrender.com/books``
+* User opens: https://yourproject.onrender.com/books
 * Browser sends an HTTP request:
 
-```http
-```
+
 GET /books HTTP/1.1
 Host: yourproject.onrender.com
-```
-
----
-```
 
 ## 🔶 2. Render’s NGINX (Auto-Managed)
 
@@ -84,41 +72,31 @@ Render provides built-in NGINX to:
 
 > ✅ You don’t need to install or configure NGINX yourself.
 
----
 
 ## 🔶 3. Gunicorn (Python WSGI HTTP Server)
 
 You run Gunicorn with:
 
-```bash
-```
 gunicorn myproject.wsgi:application
-```
-```
+
 Gunicorn:
 
 * Receives requests from NGINX
 * Uses **WSGI** to call Django
 * Handles HTTP traffic for your app
 
----
 
 ## 🔶 4. WSGI (Web Server Gateway Interface)
 
 WSGI connects Gunicorn to Django:
 
-```python
-```
 # wsgi.py
 application = get_wsgi_application()
-```
-```
+
 * Gunicorn uses this to interact with Django
 * Passes the request into Django's core
 
 > 🔌 WSGI is the bridge between the web server and your Django code.
-
----
 
 ## 🔶 5. Django Application (Your Code)
 
@@ -131,20 +109,15 @@ Django now handles the request:
 * **Middleware Processing**
 * **Settings** → Configures the app
 
----
-
 ## 🔶 6. Response Travels Back Up
 
 After generating an HTML/JSON response:
 
-```
-```
+
 Django → WSGI → Gunicorn → NGINX (Render) → Browser
-```
-```
+
 The user sees the rendered page in the browser.
 
----
 
 ## 🧩 Key Configuration Files
 
@@ -156,12 +129,9 @@ The user sees the rendered page in the browser.
 | `.env / Render Env`` | Stores secret key, database URL, debug mode, etc.  |
 | `settings.py``       | Django settings file — reads environment variables |
 
----
 
 ## 📊 Full Summary Flow
 
-```text
-```
 [User Browser]
     ↓
 [Render NGINX (auto)]
@@ -173,19 +143,12 @@ The user sees the rendered page in the browser.
 [Django App: URL → View → DB → Template]
     ↓
 [Response → Back to Browser]
-```
-
----
-```
 
 ## 📎 Optional: Want to Add Static File Handling?
 
 * Use `WhiteNoise`` or Render’s static files section
-* Update `settings.py``:
+* Update settings.py:
 
-```python
-```
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
-```
 
