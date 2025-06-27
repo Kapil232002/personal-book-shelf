@@ -54,7 +54,7 @@ Response goes back the same path
 
 ## 🔶 1. User's Browser Sends a Request
 
-* User opens: https://yourproject.onrender.com/books
+* User opens: https://personal-book-shelf-1.onrender.com
 * Browser sends an HTTP request:
 
 
@@ -102,10 +102,10 @@ application = get_wsgi_application()
 
 Django now handles the request:
 
-* **URL Routing** → `urls.py``
-* **View Logic** → `views.py``
+* **URL Routing** → urls.py
+* **View Logic** → views.py
 * **Database Query** → via Models
-* **Template Rendering** → `render()``
+* **Template Rendering** → render()
 * **Middleware Processing**
 * **Settings** → Configures the app
 
@@ -123,11 +123,11 @@ The user sees the rendered page in the browser.
 
 | File/Setting        | Description                                        |
 | ------------------- | -------------------------------------------------- |
-| `wsgi.py``           | Connects Django to Gunicorn via WSGI               |
-| `gunicorn``          | App server (runs with start command on Render)     |
-| `render.yaml``       | (Optional) Defines build/start settings            |
-| `.env / Render Env`` | Stores secret key, database URL, debug mode, etc.  |
-| `settings.py``       | Django settings file — reads environment variables |
+|  wsgi.py             | Connects Django to Gunicorn via WSGI               |
+|  gunicorn            | App server (runs with start command on Render)     |
+|  render.yaml         | (Optional) Defines build/start settings            |
+|  .env / Render Env   | Stores secret key, database URL, debug mode, etc.  |
+|  settings.py         | Django settings file — reads environment variables |
 
 
 ## 📊 Full Summary Flow
@@ -146,7 +146,7 @@ The user sees the rendered page in the browser.
 
 ## 📎 Optional: Want to Add Static File Handling?
 
-* Use `WhiteNoise`` or Render’s static files section
+* Use WhiteNoise or Render’s static files section
 * Update settings.py:
 
 STATIC_URL = '/static/'
