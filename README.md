@@ -24,8 +24,10 @@ This guide explains the **complete internal flow** of a Django app deployed on *
 2. Builds a full **HTML response** and sends it back to the browser
 
 ```python
+```
 return render(request, 'library.html', {'books': books})
-
+```
+```
 ### 🔁 Flow Breakdown:
 
 1. 🔗 User visits `/library/`
@@ -39,6 +41,7 @@ return render(request, 'library.html', {'books': books})
 
 ## 🔷 Django Hosting Flow on Render
 
+```
 ```
 User’s Browser
      ↓
@@ -54,18 +57,21 @@ Response goes back the same path
 ```
 
 ---
+```
 
 ## 🔶 1. User's Browser Sends a Request
 
-* User opens: `https://yourproject.onrender.com/books`
+* User opens: `https://yourproject.onrender.com/books``
 * Browser sends an HTTP request:
 
 ```http
+```
 GET /books HTTP/1.1
 Host: yourproject.onrender.com
 ```
 
 ---
+```
 
 ## 🔶 2. Render’s NGINX (Auto-Managed)
 
@@ -85,9 +91,10 @@ Render provides built-in NGINX to:
 You run Gunicorn with:
 
 ```bash
+```
 gunicorn myproject.wsgi:application
 ```
-
+```
 Gunicorn:
 
 * Receives requests from NGINX
@@ -101,10 +108,11 @@ Gunicorn:
 WSGI connects Gunicorn to Django:
 
 ```python
+```
 # wsgi.py
 application = get_wsgi_application()
 ```
-
+```
 * Gunicorn uses this to interact with Django
 * Passes the request into Django's core
 
@@ -116,10 +124,10 @@ application = get_wsgi_application()
 
 Django now handles the request:
 
-* **URL Routing** → `urls.py`
-* **View Logic** → `views.py`
+* **URL Routing** → `urls.py``
+* **View Logic** → `views.py``
 * **Database Query** → via Models
-* **Template Rendering** → `render()`
+* **Template Rendering** → `render()``
 * **Middleware Processing**
 * **Settings** → Configures the app
 
@@ -130,9 +138,10 @@ Django now handles the request:
 After generating an HTML/JSON response:
 
 ```
+```
 Django → WSGI → Gunicorn → NGINX (Render) → Browser
 ```
-
+```
 The user sees the rendered page in the browser.
 
 ---
@@ -141,17 +150,18 @@ The user sees the rendered page in the browser.
 
 | File/Setting        | Description                                        |
 | ------------------- | -------------------------------------------------- |
-| `wsgi.py`           | Connects Django to Gunicorn via WSGI               |
-| `gunicorn`          | App server (runs with start command on Render)     |
-| `render.yaml`       | (Optional) Defines build/start settings            |
-| `.env / Render Env` | Stores secret key, database URL, debug mode, etc.  |
-| `settings.py`       | Django settings file — reads environment variables |
+| `wsgi.py``           | Connects Django to Gunicorn via WSGI               |
+| `gunicorn``          | App server (runs with start command on Render)     |
+| `render.yaml``       | (Optional) Defines build/start settings            |
+| `.env / Render Env`` | Stores secret key, database URL, debug mode, etc.  |
+| `settings.py``       | Django settings file — reads environment variables |
 
 ---
 
 ## 📊 Full Summary Flow
 
 ```text
+```
 [User Browser]
     ↓
 [Render NGINX (auto)]
@@ -166,13 +176,15 @@ The user sees the rendered page in the browser.
 ```
 
 ---
+```
 
 ## 📎 Optional: Want to Add Static File Handling?
 
-* Use `WhiteNoise` or Render’s static files section
-* Update `settings.py`:
+* Use `WhiteNoise`` or Render’s static files section
+* Update `settings.py``:
 
 ```python
+```
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 ```
