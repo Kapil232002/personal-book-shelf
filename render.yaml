@@ -5,13 +5,13 @@ services:
     buildCommand: pip install -r requirements.txt
     startCommand: |
       python manage.py migrate
-      python manage.py createsuperuser --noinput || true
+      python manage.py create_initial_superuser
       gunicorn book_manager.wsgi:application
     envVars:
       - key: DEBUG
         value: "False"
       - key: SECRET_KEY
-        value: "your-actual-secret-key-here"
+        value: "your-actual-secret-key"
       - key: ALLOWED_HOSTS
         value: ".onrender.com"
       - key: DJANGO_SUPERUSER_USERNAME
@@ -20,4 +20,3 @@ services:
         value: "1234"
       - key: DJANGO_SUPERUSER_EMAIL
         value: "none@localhost"
-
