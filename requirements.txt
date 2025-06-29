@@ -1,5 +1,6 @@
 Django>=4.0
 gunicorn
+mysqlclient>=2.2.0
 pygame==2.6.1
 Pygments==2.19.1
 pyparsing==3.2.3
