@@ -111,11 +111,11 @@ def book_list(request):
 
 
 
-@login_required(login_url ='/')
-def delete_book(request, id):
-    queryset = Book.objects.get(id =id)
-    queryset.delete()
-    return redirect('book_list')
+# @login_required(login_url ='/')
+# def delete_book(request, id):
+#     queryset = Book.objects.get(id =id)
+#     queryset.delete()
+#     return redirect('book_list')
 
 @login_required(login_url='/')
 def confirm_delete_book(request, id):
