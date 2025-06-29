@@ -3,18 +3,18 @@ from django.contrib.auth import get_user_model
 import os
 
 class Command(BaseCommand):
-    help = "Creates superuser automatically if none exists and env vars are present"
+    help = "Creates a superuser from environment variables if not already present."
 
-    def handle(self, *args, **kwargs):
+    def handle(self, *args, **options):
         username = os.environ.get("DJANGO_SUPERUSER_USERNAME")
         email = os.environ.get("DJANGO_SUPERUSER_EMAIL")
         password = os.environ.get("DJANGO_SUPERUSER_PASSWORD")
 
         if not username or not email or not password:
-            self.stdout.write(self.style.ERROR("❌ One or more superuser environment variables are missing"))
-            self.stdout.write(f"Username: {'✅' if username else '❌ MISSING'}")
-            self.stdout.write(f"Email:    {'✅' if email else '❌ MISSING'}")
-            self.stdout.write(f"Password: {'✅' if password else '❌ MISSING'}")
+            self.stdout.write(self.style.ERROR("❌ Missing one or more environment variables"))
+            self.stdout.write(f"  USERNAME: {'✅' if username else '❌ MISSING'}")
+            self.stdout.write(f"  EMAIL:    {'✅' if email else '❌ MISSING'}")
+            self.stdout.write(f"  PASSWORD: {'✅' if password else '❌ MISSING'}")
             return
 
         User = get_user_model()
