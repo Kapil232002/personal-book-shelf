@@ -6,7 +6,6 @@ services:
     startCommand: |
       python manage.py migrate
 
-      # Create superuser: kapil
       DJANGO_SUPERUSER_USERNAME=kapil \
       DJANGO_SUPERUSER_PASSWORD=1234 \
       DJANGO_SUPERUSER_EMAIL=none@localhost \
