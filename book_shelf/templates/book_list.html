@@ -218,14 +218,7 @@
 
                 <td>
                     <a href="/update-books/{{ book.id }}" class="btn btn-outline-success mb-3">✏ Update</a>
-<<<<<<< HEAD
-<<<<<<< HEAD
-                    <a href="/delete-book/{{ book.id }}" class="btn btn-outline-danger mb-3">🗑 Delete</a>
-=======
->>>>>>> 1e21e3325f00fd52fbbba0c08700975600f2bfc7
-=======
 
->>>>>>> aef38d6 (add some files)
                     {% if book.reference_link %}
                     <a href="{{ book.reference_link }}" target="_blank"
                         onclick="return handleViewBook(this, '{{ book.reference_link }}');"
@@ -264,8 +257,8 @@
 
 
       function toggleDescription(id) {
-    const shortDesc = document.getElementById(`short-desc-${id}`);
-    const fullDesc = document.getElementById(`full-desc-${id}`);
+    const shortDesc = document.getElementById(⁠ short-desc-${id} ⁠);
+    const fullDesc = document.getElementById(⁠ full-desc-${id} ⁠);
     if (shortDesc.style.display === 'none') {
       shortDesc.style.display = 'inline';
       fullDesc.style.display = 'none';
