@@ -3,11 +3,11 @@
 {% block start %}
 <style>
     body {
-    margin: 0 ;
-    padding: 0;
-    font-family: 'Poppins', sans-serif;
-    background: linear-gradient(135deg, #1f1c2c, #928dab);
-    min-height: 100vh;
+        margin: 0;
+        padding: 0;
+        font-family: 'Poppins', sans-serif;
+        background: linear-gradient(135deg, #1f1c2c, #928dab);
+        min-height: 100vh;
     }
 
     .professional-gradient {
@@ -174,7 +174,7 @@
 
 <!-- Search -->
 <div class="search-bar">
-    <form method="GET">
+    <form methqod="GET">
         <input class="form-control" type="search" name="q" placeholder="Search by Title, Author or Username"
             value="{{ request.GET.q }}" style="width: 300px;" />
         <button class="btn btn-light" type="submit">🔍 Search</button>
@@ -218,7 +218,6 @@
 
                 <td>
                     <a href="/update-books/{{ book.id }}" class="btn btn-outline-success mb-3">✏ Update</a>
-<<<<<<< HEAD
                     <a href="/delete-book/{{ book.id }}" class="btn btn-outline-danger mb-3">🗑 Delete</a>
                     {% if book.reference_link %}
                     <a href="{{ book.reference_link }}" target="_blank"
@@ -228,11 +227,6 @@
                     <a href="#" onclick="return handleViewBook(this, '');" class="btn btn-outline-view mb-3">👁️ View
                         Book</a>
                     {% endif %}
-=======
-
-                    <!-- Modal Trigger -->
-                    <a href="{% url 'confirm_delete_book' book.id %}" class="btn btn-outline-danger mb-3">🗑 Delete</a>
->>>>>>> dev-branch2
 
 
 
