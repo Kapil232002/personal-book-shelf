@@ -1,0 +1,13 @@
+services:
+  - type: web
+    name: book-manager
+    env: python
+    buildCommand: |
+      pip install -r requirements.txt
+      python manage.py migrate
+      echo "from django.contrib.auth import get_user_model; \
+      User = get_user_model(); \
+      User.objects.filter(username='kapil').exists() or \
+      User.objects.create_superuser('kapil', 'None', '1234')" \
+      | python manage.py shell
+    startCommand: gunicorn book_manager.wsgi:application

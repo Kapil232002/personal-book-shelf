@@ -111,11 +111,11 @@ def book_list(request):
 
 
 
-@login_required(login_url ='/')
-def delete_book(request, id):
-    queryset = Book.objects.get(id =id)
-    queryset.delete()
-    return redirect('book_list')
+# @login_required(login_url ='/')
+# def delete_book(request, id):
+#     queryset = Book.objects.get(id =id)
+#     queryset.delete()
+#     return redirect('book_list')
 
 @login_required(login_url='/')
 def confirm_delete_book(request, id):
@@ -171,12 +171,10 @@ def reset_password_by_username(request):
         username = request.POST.get('username')
         old_password = request.POST.get('old_password')
         new_password = request.POST.get('new_password')
-
-        user = authenticate(request, username=username, password=old_password)
-
+        users = authenticate(request, username = username, password = old_password)
         if user:
-            user.set_password(new_password)
-            user.save()
+            users.set_password(new_password)
+            users.save()
             messages.success(request, 'Password changed successfully.')
         else:
             messages.error(request, 'Old password is incorrect or username not found.')
