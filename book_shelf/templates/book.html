@@ -2,13 +2,11 @@
 
 {% block start %}
 <style>
-    /* Apply the themed background */
     body {
         margin: 0;
         padding: 0;
         font-family: 'Poppins', sans-serif;
         background: linear-gradient(135deg, #1f1c2c, #928dab);
-
         min-height: 100vh;
         display: flex;
         flex-direction: column;
@@ -31,7 +29,6 @@
         font-size: 1.4rem;
     }
 
-    /* Form Card */
     .card {
         background: rgba(255, 255, 255, 0.2);
         border-radius: 15px;
@@ -43,25 +40,20 @@
         color: whitesmoke;
     }
 
-    /* Header: Add Your Book */
     h2 {
         text-align: center;
         padding: 15px;
         border-radius: 10px;
         color: #f8f9fa;
-        /* Light text for dark bg */
         font-size: 28px;
         font-weight: 600;
     }
 
-    /* Labels - Soft Gold */
     label {
         font-weight: 600;
         color: #e0b973;
-        /* Warm elegant gold */
     }
 
-    /* Input fields */
     .form-control {
         background-color: rgba(255, 255, 255, 0.05);
         border: 2px solid rgba(255, 255, 255, 0.2);
@@ -78,12 +70,10 @@
         background-color: rgba(255, 255, 255, 0.1);
     }
 
-    /* Placeholder text */
     .form-control::placeholder {
         color: rgba(255, 255, 255, 0.5);
     }
 
-    /* Submit button */
     .btn-success {
         background: linear-gradient(to right, #928dab, #1f1c2c);
         color: white;
@@ -99,9 +89,9 @@
         transform: scale(1.03);
         box-shadow: 0 6px 18px rgba(0, 0, 0, 0.4);
     }
+
 </style>
 
-<!-- Navbar inside container-fluid -->
 <div class="container-fluid">
     <nav class="navbar navbar-expand-lg shadow-lg professional-gradient p-3">
         <div class="container-fluid">
@@ -110,20 +100,16 @@
             <div class="d-flex flex-column align-items-end ms-auto">
                 {% if request.user.is_authenticated %}
                 <span class="text-white fw-semibold mb-2">Welcome, {{ request.user.username }}</span>
-
                 <div class="d-flex flex-wrap align-items-center">
-
                     <a href="/book-list/" class="btn btn-outline-light me-2 mb-1">📖 Book List</a>
                     <a href="/logout" class="btn btn-light mb-1">Logout</a>
                 </div>
-
                 {% endif %}
             </div>
         </div>
     </nav>
 </div>
 
-<!-- Book Submission Form -->
 <div class="container my-4">
     <form class="col-6 mx-auto card p-4 shadow-lg" method="post">
         {% csrf_token %}
@@ -154,12 +140,92 @@
             <label for="reference_link">Reference Link (optional):</label>
             <input type="url" name="reference_link" id="reference_link" class="form-control"
                 value="{{ form.reference_link.value|default_if_none:'' }}" placeholder="Link">
-
         </div>
-        <div class="form-group mb-4">
+        <div class="form-group mb-4 position-relative">
             <label>Added By</label>
-            <input name="added_by" type="text" class="form-control" placeholder="Username" required>
+            <input type="text" id="addedByInput" name="added_by" placeholder="Type your username..."
+                class="form-control" autocomplete="off">
+            <ul id="usernameSuggestions" class="styled-suggestions position-absolute w-100"></ul>
         </div>
+
+        <!-- 🎨 Dropdown Styling -->
+        <style>
+            .styled-suggestions {
+                z-index: 99;
+                margin-top: 4px;
+                list-style: none;
+                padding-left: 0;
+                max-height: 180px;
+                overflow-y: auto;
+
+                background: linear-gradient(135deg, rgba(31, 28, 44, 0.9), rgba(146, 141, 171, 0.9));
+                border: 1px solid rgba(255, 255, 255, 0.1);
+                border-radius: 10px;
+                backdrop-filter: blur(10px);
+                box-shadow: 0 6px 18px rgba(0, 0, 0, 0.5);
+            }
+
+            .styled-suggestions li {
+                padding: 10px 14px;
+                color: #f8f9fa;
+                font-weight: 500;
+                border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+                transition: background 0.3s ease;
+            }
+
+            .styled-suggestions li.selectable {
+                cursor: pointer;
+            }
+
+            .styled-suggestions li.selectable:hover {
+                background-color: rgba(255, 255, 255, 0.1);
+            }
+
+            .styled-suggestions li.disabled {
+                opacity: 0.5;
+                cursor: not-allowed;
+                pointer-events: none;
+            }
+        </style>
+
+        <!-- ⚙️ Logic for Dropdown -->
+        <script>
+            document.getElementById('addedByInput').addEventListener('input', function () {
+                const query = this.value.toLowerCase();
+                const suggestionBox = document.getElementById('usernameSuggestions');
+                const currentUser = "{{ request.user.username|lower }}";
+
+                if (query.length >= 3) {
+                    fetch(`/suggest-username/?q=${query}`)
+
+                        .then(response => response.json())
+                        .then(data => {
+                            suggestionBox.innerHTML = '';
+
+                            data.forEach(item => {
+                                const li = document.createElement('li');
+                                li.textContent = item.username;
+
+                                if (item.username.toLowerCase() === currentUser) {
+                                    li.classList.add('selectable');
+                                    li.onclick = () => {
+                                        document.getElementById('addedByInput').value = item.username;
+                                        suggestionBox.innerHTML = '';
+                                    };
+                                } else {
+                                    li.classList.add('disabled');
+                                    li.title = "Only your own username can be selected";
+                                }
+
+                                suggestionBox.appendChild(li);
+                            });
+                        });
+                } else {
+                    suggestionBox.innerHTML = '';
+                }
+            });
+        </script>
+
         <button type="submit" class="btn btn-success">Submit</button>
     </form>
 </div>

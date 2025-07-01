@@ -28,6 +28,7 @@ urlpatterns = [
 
     path('delete-book-confirm/<int:id>/', confirm_delete_book, name='confirm_delete_book'),
     path('delete-book/<int:id>/confirm/', delete_book_confirmed, name='delete_book_confirmed'),
+    path('suggest-username/', suggest_username, name='suggest_username'),
 
 
     path('update-books/<int:id>/', update_books, name='update_books'),
